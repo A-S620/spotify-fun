@@ -1,11 +1,11 @@
 import '@testing-library/jest-dom';
-import { AuthClient } from '../../../middleware/Clients/AuthClient';
+import AuthClient from '../../../middleware/Clients/AuthClient';
 import PlaylistClient from '../../../middleware/Clients/PlaylistClient';
 import keyDetails from '../../../util/keyDetails';
 
 let accessToken: string;
 beforeAll(async () => {
-    accessToken = await AuthClient(keyDetails.clientID, keyDetails.clientSecret);
+    accessToken = await AuthClient.getAccessToken(keyDetails.clientID, keyDetails.clientSecret);
 });
 describe('PlaylistClient client component', () => {
     describe('getPlaylistById', () => {
