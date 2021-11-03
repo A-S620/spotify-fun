@@ -20,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "cross-env SPOTIFY_CLIENT_ID='3683a535eef44e2ab15523f2a929b152' react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -45,6 +45,7 @@
     "@testing-library/jest-dom": "^5.15.0",
     "@types/qs": "^6.9.7",
     "axios-mock-adapter": "^1.20.0",
+    "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",

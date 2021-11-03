@@ -5,7 +5,8 @@ import keyDetails from '../../../util/keyDetails';
 
 let accessToken: string;
 beforeAll(async () => {
-    accessToken = await AuthClient.getAccessToken(keyDetails.clientID, keyDetails.clientSecret);
+    let clientId = process.env.SPOTIFY_CLIENT_ID ? process.env.SPOTIFY_CLIENT_ID : '';
+    accessToken = await AuthClient.getAccessToken(clientId, keyDetails.clientSecret);
 });
 describe('PlaylistClient client component', () => {
     describe('getPlaylistById', () => {
