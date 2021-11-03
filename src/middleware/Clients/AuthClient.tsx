@@ -24,6 +24,7 @@ export const AuthClient = async (clientId: string, clientSecret: string) => {
         const { response } = error;
         if (response) {
             const errorResponseData = response.data as { error: string; error_description: string };
+            console.log(Object.entries(response.data));
             return new Error(`${errorResponseData.error}: ${errorResponseData.error_description}`);
         }
         return new Error('Request Failed');
