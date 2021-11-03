@@ -1,0 +1,2 @@
+window.SPOTIFY_CLIENT_ID = '';
+window.SPOTIFY_CLIENT_SECRET = '';
