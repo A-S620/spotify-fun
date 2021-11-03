@@ -24,7 +24,7 @@ jobs:
       run: npm ci
     
     - name: Build project
-      run: npm run build
+      run: ./node_modules/.bin/cross-env SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }} SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }} npm run build
     
     - name: Run tests
       run: ./node_modules/.bin/cross-env SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }} SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }} npm run test
