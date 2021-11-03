@@ -27,7 +27,7 @@ jobs:
       run: npm run build
     
     - name: Run tests
-      run: npm run test
+      run: cross-env SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }} SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }} npm run test
 
     - name: Upload production-ready build files
       uses: actions/upload-artifact@v2
