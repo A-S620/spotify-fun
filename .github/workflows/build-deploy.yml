@@ -24,10 +24,10 @@ jobs:
       run: npm ci
     
     - name: Build project
-      run: ./node_modules/.bin/cross-env SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }} SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }} npm run build
+      run: ./node_modules/.bin/cross-env REACT_APP_SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }} REACT_APP_SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }} npm run build
     
     - name: Run tests
-      run: ./node_modules/.bin/cross-env SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }} SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }} npm run test
+      run: ./node_modules/.bin/cross-env REACT_APP_SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }} REACT_APP_SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }} npm run test
 
     - name: Upload production-ready build files
       uses: actions/upload-artifact@v2
