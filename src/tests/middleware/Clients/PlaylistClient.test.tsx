@@ -11,12 +11,18 @@ beforeAll(async () => {
 describe('PlaylistClient client component', () => {
     describe('getPlaylistById', () => {
         it('should return the playlist when a valid playlistId is used', async () => {
-            const response = await PlaylistClient.getPlaylistById('3kwtMOO3XycjEyqsvzqbDp', accessToken);
+            const response = await PlaylistClient.getAllPlaylistDataById('3kwtMOO3XycjEyqsvzqbDp', accessToken);
             expect(response.name).toBe('Just Blue Side');
         });
         it('should throw an error when an invalid playlistId is used', async () => {
-            const response = await PlaylistClient.getPlaylistById('test', accessToken);
+            const response = await PlaylistClient.getAllPlaylistDataById('test', accessToken);
             expect(response.toString()).toEqual('Error: 404: Invalid playlist Id');
+        });
+    });
+    describe('getAllSongIdsFromPlaylist', () => {
+        it('should return all the songs in a playlist as an array of ids', async () => {
+            const response = await PlaylistClient.getAllPlaylistDataById('3kwtMOO3XycjEyqsvzqbDp', accessToken);
+            expect(PlaylistClient.getAllSongIdsFromPlaylistAsArray(response)).toBe(['2yAr91sJO2OQinZLghgnzr']);
         });
     });
 });
