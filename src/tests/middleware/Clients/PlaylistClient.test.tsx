@@ -4,8 +4,8 @@ import PlaylistClient from '../../../middleware/Clients/PlaylistClient';
 
 let accessToken: string;
 beforeAll(async () => {
-    let clientId = process.env.SPOTIFY_CLIENT_ID ? process.env.SPOTIFY_CLIENT_ID : '';
-    let clientSecret = process.env.SPOTIFY_CLIENT_SECRET ? process.env.SPOTIFY_CLIENT_SECRET : '';
+    let clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID ? process.env.REACT_APP_SPOTIFY_CLIENT_ID : '';
+    let clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET ? process.env.REACT_APP_SPOTIFY_CLIENT_SECRET : '';
     accessToken = await AuthClient.getAccessToken(clientId, clientSecret);
 });
 describe('PlaylistClient client component', () => {
