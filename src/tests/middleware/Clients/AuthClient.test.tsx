@@ -1,6 +1,5 @@
 import '@testing-library/jest-dom';
 import AuthClient from '../../../middleware/Clients/AuthClient';
-import keyDetails from '../../../util/keyDetails';
 
 describe('AuthClient component', () => {
     describe('getAccessToken', () => {
@@ -10,7 +9,8 @@ describe('AuthClient component', () => {
         });
         test('should respond with a string token when the clientId and clientSecret are valid', async () => {
             let clientId = process.env.SPOTIFY_CLIENT_ID ? process.env.SPOTIFY_CLIENT_ID : '';
-            const response = await AuthClient.getAccessToken(clientId, keyDetails.clientSecret);
+            let clientSecret = process.env.SPOTIFY_CLIENT_SECRET ? process.env.SPOTIFY_CLIENT_SECRET : '';
+            const response = await AuthClient.getAccessToken(clientId, clientSecret);
             expect(typeof response).toBe('string');
         });
     });
