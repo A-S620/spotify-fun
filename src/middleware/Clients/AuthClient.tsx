@@ -1,7 +1,7 @@
 import axios from 'axios';
 import qs from 'qs';
 
-export const Auth = async (clientId: string, clientSecret: string) => {
+export const AuthClient = async (clientId: string, clientSecret: string) => {
     const headers = {
         headers: {
             Accept: 'application/json',
@@ -18,9 +18,7 @@ export const Auth = async (clientId: string, clientSecret: string) => {
 
     try {
         const response = await axios.post('https://accounts.spotify.com/api/token', qs.stringify(data), headers);
-        if (response.status === 200) {
-            return response.data.access_token;
-        }
+        return response.data.access_token;
     } catch (error) {
         // @ts-ignore
         const { response } = error;
@@ -28,5 +26,6 @@ export const Auth = async (clientId: string, clientSecret: string) => {
             const errorResponseData = response.data as { error: string; error_description: string };
             return new Error(`${errorResponseData.error}: ${errorResponseData.error_description}`);
         }
+        return new Error('Request Failed');
     }
 };
