@@ -1,21 +1,31 @@
 import React from 'react';
-import SearchBar from '../SearchBar/SearchBar';
 import './App.css';
+import Playlist from '../Playlist/Playlist';
+import SearchResults from '../SearchResults/SearchResults';
+import SearchBar from '../SearchBar/SearchBar';
 
 require('dotenv').config();
 
-function App() {
-    return (
-        <div>
-            <h1>
-                <span className="highlight">Spotify Fun</span>
-            </h1>
-            <div className="App">
-                <SearchBar />
-                <div className="App-playlist">Meep</div>
-            </div>
-        </div>
-    );
-}
+export default class App extends React.Component<any, any> {
+    constructor(props: any) {
+        super(props);
+        this.state = { searchResults: [] };
+    }
 
-export default App;
+    render() {
+        return (
+            <div>
+                <h1>
+                    <span className="highlight">Spotify Fun</span>
+                </h1>
+                <div className="App">
+                    <SearchBar />
+                    <div className="App-playlist">
+                        <SearchResults searchResults={this.state.searchResults} />
+                        <Playlist />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
