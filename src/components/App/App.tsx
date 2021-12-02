@@ -8,7 +8,8 @@ import { ITrack } from '../../Interfaces/ITrack';
 require('dotenv').config();
 
 export default function App() {
-    const [searchResults, setSearchReults] = useState<ITrack[]>([
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [searchResults, setSearchResults] = useState<ITrack[]>([
         { name: 'Blue Side (Outro)', artist: 'j-hope', album: 'Hope World', id: '1Blue' },
     ]);
     const [playlistName, setPlaylistName] = useState<string>('Just for fun');
