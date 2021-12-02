@@ -4,14 +4,8 @@ import Playlist from '../Playlist/Playlist';
 import SearchResults from '../SearchResults/SearchResults';
 import SearchBar from '../SearchBar/SearchBar';
 import { ITrack } from '../../Interfaces/ITrack';
-import { IPlaylist } from '../../Interfaces/IPlaylist';
 
 require('dotenv').config();
-
-interface IState {
-    searchResults: ITrack[];
-    playlist: IPlaylist;
-}
 
 export default function App() {
     const [searchResults, setSearchReults] = useState<ITrack[]>([
@@ -34,13 +28,22 @@ export default function App() {
     const removeTrack = (track: ITrack) => {
         setPlaylistTracks(playlistTracks.filter((playlistTrack) => playlistTrack.id !== track.id));
     };
+
+    const generatePlaylistURIOnSave = (tracks: ITrack[]): string[] => {
+        return tracks.map((track: ITrack) => `spotify:track:${track.id}`);
+    };
+
+    const search = (searchTerm: string) => {
+        console.log(searchTerm);
+    };
+
     return (
         <div>
             <h1>
                 <span className="highlight">Spotify Fun</span>
             </h1>
             <div className="App">
-                <SearchBar />
+                <SearchBar onSearch={(searchTerm) => search(searchTerm)} />
                 <div className="App-playlist">
                     <SearchResults
                         searchResults={searchResults}
@@ -51,8 +54,14 @@ export default function App() {
                     <Playlist
                         playlistName={playlistName}
                         playlistTracks={playlistTracks}
+                        onNameChange={(name) => {
+                            setPlaylistName(name);
+                        }}
                         onRemove={(track) => {
                             removeTrack(track);
+                        }}
+                        onSave={(tracks) => {
+                            generatePlaylistURIOnSave(tracks);
                         }}
                     />
                 </div>
