@@ -1,13 +1,38 @@
 import React from 'react';
 import './TrackList.css';
 import Track from '../Track/Track';
+import { ITrack } from '../../Interfaces/ITrack';
 
-export default class TrackList extends React.Component<any, any> {
-    render() {
-        return (
-            <div className="TrackList">
-                <Track />
-            </div>
-        );
-    }
+interface ITrackList {
+    trackList: ITrack[];
+    isRemoval: boolean;
+
+    onRemove?: (track: ITrack) => void;
+
+    onAdd?: (track: ITrack) => void;
+}
+
+export default function TrackList(props: ITrackList) {
+    return (
+        <div className="TrackList">
+            {props.trackList.map((track) => {
+                return (
+                    <Track
+                        track={track}
+                        onAdd={(track) => {
+                            if (props.onAdd) {
+                                props.onAdd(track);
+                            }
+                        }}
+                        onRemove={(track) => {
+                            if (props.onRemove) {
+                                props.onRemove(track);
+                            }
+                        }}
+                        isRemoval={props.isRemoval}
+                    />
+                );
+            })}
+        </div>
+    );
 }

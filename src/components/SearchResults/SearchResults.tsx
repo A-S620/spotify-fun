@@ -1,18 +1,25 @@
 import React from 'react';
 import './SearchResults.css';
 import TrackList from '../TrackList/TrackList';
+import { ITrack } from '../../Interfaces/ITrack';
 
-export default class SearchResults extends React.Component<any, any> {
-    constructor(props: any) {
-        super(props);
-    }
+interface ISearchResults {
+    searchResults: ITrack[];
 
-    render() {
-        return (
-            <div className="SearchResults">
-                <h2>Results</h2>
-                <TrackList searchResults={this.props.searchResults} />
-            </div>
-        );
-    }
+    onAdd(track: ITrack): void;
+}
+
+export default function SearchResults(props: ISearchResults) {
+    return (
+        <div className="SearchResults">
+            <h2>Results</h2>
+            <TrackList
+                isRemoval={false}
+                trackList={props.searchResults}
+                onAdd={(track) => {
+                    props.onAdd(track);
+                }}
+            />
+        </div>
+    );
 }
