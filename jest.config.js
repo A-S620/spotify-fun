@@ -2,7 +2,7 @@
 // https://jestjs.io/docs/en/configuration.html
 
 module.exports = {
-    roots: ['<rootDir>/src/test'],
+    roots: ['<rootDir>/src/tests'],
     verbose: true,
     setupFiles: ['./src/tests/setupTests.js'],
     setupFilesAfterEnv: ['<rootDir>src/test/setupTests.js'],
