@@ -13,21 +13,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Install Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 14.x
-
       - name: Install NPM packages
-        run: npm install
-
+        run: npm ci
       - name: Run tests
         run: ./node_modules/.bin/cross-env REACT_APP_SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }} REACT_APP_SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }} npm run test
       - name: Build project
         run: ./node_modules/.bin/cross-env REACT_APP_SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }} REACT_APP_SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }} npm run build
-
-
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
         with:
