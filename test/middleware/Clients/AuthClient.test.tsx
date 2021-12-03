@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import AuthClient from '../../../middleware/Clients/AuthClient';
+import AuthClient from '../../../src/middleware/Clients/AuthClient';
 
 describe('AuthClient component', () => {
     describe('getAccessToken', () => {

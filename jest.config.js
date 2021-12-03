@@ -2,15 +2,29 @@
 // https://jestjs.io/docs/en/configuration.html
 
 module.exports = {
-    roots: ['<rootDir>/src/tests'],
+    roots: ['<rootDir>/test'],
     verbose: true,
-    setupFiles: ['./src/tests/setupTests.ts'],
-    setupFilesAfterEnv: ['<rootDir>src/tests/setupTests.ts'],
+    setupFiles: ['./test/setupTests.ts'],
+    setupFilesAfterEnv: ['<rootDir>test/setupTests.ts'],
     snapshotSerializers: ['enzyme-to-json/serializer'],
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
     transform: {
-        '^.+\\.js$': 'babel-jest',
+        '^.+\\.tsx?$': 'ts-jest',
+        '^.+\\.(js|jsx)?$': 'babel-jest',
         '^.+\\.css$': 'jest-transform-css',
+    },
+    coverageThreshold: {
+        global: {
+            branches: 70,
+            functions: 70,
+            lines: 80,
+            statements: 80,
+        },
+    },
+    globals: {
+        'ts-jest': {
+            diagnostics: false,
+        },
     },
     collectCoverageFrom: ['**/*.{js,jsx}', '!**/node_modules/**', '!**/vendor/**'],
     clearMocks: true,
@@ -25,4 +39,9 @@ module.exports = {
     resetModules: true,
     testEnvironment: 'node',
     watchman: true,
+    moduleNameMapper: {
+        '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+            '<rootDir>/test/fileMock.ts',
+        '^@/(.*)$': '<rootDir>/src/$1',
+    },
 };

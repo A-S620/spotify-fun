@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
-import AuthClient from '../../../middleware/Clients/AuthClient';
-import PlaylistClient from '../../../middleware/Clients/PlaylistClient';
+import AuthClient from '../../../src/middleware/Clients/AuthClient';
+import PlaylistClient from '../../../src/middleware/Clients/PlaylistClient';
 
 let accessToken: string;
 beforeAll(async () => {
