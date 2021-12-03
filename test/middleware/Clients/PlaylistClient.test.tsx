@@ -22,7 +22,7 @@ describe('PlaylistClient client component', () => {
     describe('getAllSongIdsFromPlaylist', () => {
         it('should return all the songs in a playlist as an array of ids', async () => {
             const response = await PlaylistClient.getAllPlaylistDataById('3kwtMOO3XycjEyqsvzqbDp', accessToken);
-            expect(PlaylistClient.getAllSongIdsFromPlaylistAsArray(response)).toBe(['2yAr91sJO2OQinZLghgnzr']);
+            expect(PlaylistClient.getAllSongIdsFromPlaylistAsArray(response)).toEqual(['2yAr91sJO2OQinZLghgnzr']);
         });
     });
 });
