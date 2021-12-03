@@ -4,7 +4,7 @@
 module.exports = {
     roots: ['<rootDir>/src/tests'],
     verbose: true,
-    setupFiles: ['./src/tests/setupTests.js'],
+    setupFiles: ['./src/tests/setupTests.ts'],
     setupFilesAfterEnv: ['<rootDir>src/tests/setupTests.ts'],
     snapshotSerializers: ['enzyme-to-json/serializer'],
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
