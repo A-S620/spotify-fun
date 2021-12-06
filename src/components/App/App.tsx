@@ -28,7 +28,10 @@ export default function App() {
     useEffect(() => {
         if (!tokenIsFetched) {
             fetchAccessToken();
-            window.setTimeout(() => setAccessToken(''), AuthClient.expiresIn * 1000);
+            window.setTimeout(() => {
+                setAccessToken('');
+                AuthClient.reset();
+            }, AuthClient.expiresIn * 1000);
         } else {
             fetchAccessToken();
         }
