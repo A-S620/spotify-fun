@@ -30,14 +30,13 @@ export default function App() {
             fetchAccessToken();
             window.setTimeout(() => setAccessToken(''), AuthClient.expiresIn * 1000);
         } else {
-            window.history.pushState('Access Token', '', '/');
+            fetchAccessToken();
         }
     });
     const fetchAccessToken = async () => {
-        await AuthClient.getAccessToken(
-            Config.REACT_APP_SPOTIFY_CLIENT_ID,
-            Config.REACT_APP_SPOTIFY_CLIENT_SECRET
-        ).catch((error: Error) => console.warn(error));
+        await AuthClient.getAccessToken(Config.spotifyClientId, Config.spotifyClientSecret).catch((error: Error) =>
+            console.warn(error)
+        );
         setAccessToken(AuthClient.accessToken);
         setTokenIsFetched(true);
     };
