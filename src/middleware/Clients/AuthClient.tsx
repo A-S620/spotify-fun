@@ -2,6 +2,8 @@ import axios from 'axios';
 import qs from 'qs';
 
 export default class AuthClient {
+    static accessToken: string;
+    static expiresIn: number;
     static getAccessToken = async (clientId: string, clientSecret: string) => {
         const headers = {
             headers: {
@@ -19,7 +21,8 @@ export default class AuthClient {
 
         try {
             const response = await axios.post('https://accounts.spotify.com/api/token', qs.stringify(data), headers);
-            return response.data.access_token;
+            AuthClient.accessToken = response.data.access_token;
+            AuthClient.expiresIn = response.data.expiresIn;
         } catch (error) {
             // @ts-ignore
             const { response } = error;
@@ -29,5 +32,8 @@ export default class AuthClient {
             }
             return new Error('Request Failed');
         }
+    };
+    static resetToken = () => {
+        AuthClient.accessToken = '';
     };
 }

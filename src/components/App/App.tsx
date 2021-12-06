@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Playlist from '../Playlist/Playlist';
 import SearchResults from '../SearchResults/SearchResults';
 import SearchBar from '../SearchBar/SearchBar';
 import { ITrack } from '../../Interfaces/ITrack';
+import AuthClient from '../../middleware/Clients/AuthClient';
+import { Config } from '../../Config';
 
 require('dotenv').config();
 
@@ -12,6 +14,8 @@ export default function App() {
     const [searchResults, setSearchResults] = useState<ITrack[]>([
         { name: 'Blue Side (Outro)', artist: 'j-hope', album: 'Hope World', id: '1Blue' },
     ]);
+    const [accessToken, setAccessToken] = useState<string>('');
+    const [tokenIsFetched, setTokenIsFetched] = useState<boolean>(false);
     const [playlistName, setPlaylistName] = useState<string>('Just for fun');
     const [playlistTracks, setPlaylistTracks] = useState<ITrack[]>([
         {
@@ -21,6 +25,22 @@ export default function App() {
             id: '1MyUni',
         },
     ]);
+    useEffect(() => {
+        if (!tokenIsFetched) {
+            fetchAccessToken();
+            window.setTimeout(() => setAccessToken(''), AuthClient.expiresIn * 1000);
+        } else {
+            window.history.pushState('Access Token', '', '/');
+        }
+    });
+    const fetchAccessToken = async () => {
+        await AuthClient.getAccessToken(
+            Config.REACT_APP_SPOTIFY_CLIENT_ID,
+            Config.REACT_APP_SPOTIFY_CLIENT_SECRET
+        ).catch((error: Error) => console.warn(error));
+        setAccessToken(AuthClient.accessToken);
+        setTokenIsFetched(true);
+    };
     const addTrack = (track: ITrack) => {
         if (playlistTracks.filter((playlistTrack) => playlistTrack.id === track.id).length === 0) {
             setPlaylistTracks([...playlistTracks, track]);

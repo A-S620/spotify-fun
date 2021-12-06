@@ -6,7 +6,11 @@ let accessToken: string;
 beforeAll(async () => {
     let clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID ? process.env.REACT_APP_SPOTIFY_CLIENT_ID : '';
     let clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET ? process.env.REACT_APP_SPOTIFY_CLIENT_SECRET : '';
-    accessToken = await AuthClient.getAccessToken(clientId, clientSecret);
+    accessToken = (await AuthClient.getAccessToken(clientId, clientSecret)
+        .then((r) => {
+            return r as string;
+        })
+        .catch((error: Error) => console.warn(error))) as string;
 });
 describe('PlaylistClient client component', () => {
     describe('getPlaylistById', () => {
