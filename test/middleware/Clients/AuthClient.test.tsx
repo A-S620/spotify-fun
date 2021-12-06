@@ -2,6 +2,9 @@ import '@testing-library/jest-dom';
 import AuthClient from '../../../src/middleware/Clients/AuthClient';
 import { Config } from '../../../src/Config';
 
+afterAll(() => {
+    AuthClient.reset();
+});
 describe('AuthClient component', () => {
     describe('getAccessToken', () => {
         test('should throw an error when the clientId and clientSecret are invalid', async () => {

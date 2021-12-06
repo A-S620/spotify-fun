@@ -1,16 +1,17 @@
 import '@testing-library/jest-dom';
 import AuthClient from '../../../src/middleware/Clients/AuthClient';
 import PlaylistClient from '../../../src/middleware/Clients/PlaylistClient';
+import { Config } from '../../../src/Config';
 
 let accessToken: string;
 beforeAll(async () => {
-    let clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID ? process.env.REACT_APP_SPOTIFY_CLIENT_ID : '';
-    let clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET ? process.env.REACT_APP_SPOTIFY_CLIENT_SECRET : '';
-    accessToken = (await AuthClient.getAccessToken(clientId, clientSecret)
-        .then((r) => {
-            return r as string;
-        })
-        .catch((error: Error) => console.warn(error))) as string;
+    await AuthClient.getAccessToken(Config.spotifyClientId, Config.spotifyClientSecret).catch((error: Error) =>
+        console.warn(error)
+    );
+    accessToken = AuthClient.accessToken;
+});
+afterAll(() => {
+    AuthClient.reset();
 });
 describe('PlaylistClient client component', () => {
     describe('getPlaylistById', () => {

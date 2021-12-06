@@ -33,4 +33,9 @@ export default class AuthClient {
             return new Error('Request Failed');
         }
     };
+
+    static reset() {
+        AuthClient.accessToken = '';
+        AuthClient.expiresIn = 0;
+    }
 }
