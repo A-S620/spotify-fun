@@ -12,7 +12,7 @@ require('dotenv').config();
 export default function App() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [searchResults, setSearchResults] = useState<ITrack[]>([
-        { name: 'Blue Side (Outro)', artists: 'j-hope', album: 'Hope World', id: '1Blue' },
+        { name: 'Blue Side (Outro)', artists: ['j-hope'], album: 'Hope World', id: '1Blue' },
     ]);
     const [accessToken, setAccessToken] = useState<string>('');
     const [tokenIsFetched, setTokenIsFetched] = useState<boolean>(false);
@@ -20,7 +20,7 @@ export default function App() {
     const [playlistTracks, setPlaylistTracks] = useState<ITrack[]>([
         {
             name: 'My Universe',
-            artists: 'Coldplay',
+            artists: ['Coldplay'],
             album: 'My Universe',
             id: '1MyUni',
         },
