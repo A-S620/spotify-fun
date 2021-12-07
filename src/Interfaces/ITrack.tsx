@@ -1,6 +1,6 @@
 export interface ITrack {
     name: string;
-    artist: string;
+    artists: Array<string>;
     album: string;
     id: string;
 }

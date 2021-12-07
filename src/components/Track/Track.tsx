@@ -36,7 +36,7 @@ export default function Track(props: ITrackComponent) {
             <div className="Track-information">
                 <h3>{props.track.name}</h3>
                 <p>
-                    {props.track.artist} | {props.track.album}
+                    {props.track.artists} | {props.track.album}
                 </p>
             </div>
             <button
@@ -46,14 +46,14 @@ export default function Track(props: ITrackComponent) {
                         onRemove({
                             id: props.track.id,
                             name: props.track.name,
-                            artist: props.track.artist,
+                            artists: props.track.artists,
                             album: props.track.album,
                         });
                     } else {
                         addTrack({
                             id: props.track.id,
                             name: props.track.name,
-                            artist: props.track.artist,
+                            artists: props.track.artists,
                             album: props.track.album,
                         });
                     }
