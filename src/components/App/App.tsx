@@ -6,6 +6,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import { ITrack } from '../../Interfaces/ITrack';
 import AuthClient from '../../middleware/Clients/AuthClient';
 import { Config } from '../../Config';
+import SearchClient from '../../middleware/Clients/SearchClient';
 
 require('dotenv').config();
 
@@ -31,9 +32,8 @@ export default function App() {
             window.setTimeout(() => {
                 setAccessToken('');
                 AuthClient.reset();
+                setTokenIsFetched(false);
             }, AuthClient.expiresIn * 1000);
-        } else {
-            fetchAccessToken();
         }
     });
     const fetchAccessToken = async () => {
@@ -56,8 +56,10 @@ export default function App() {
         return tracks.map((track: ITrack) => `spotify:track:${track.id}`);
     };
 
-    const search = (searchTerm: string) => {
-        console.log(searchTerm);
+    const search = async (searchTerm: string) => {
+        const response = await SearchClient.searchTracks(searchTerm, accessToken);
+        const results = SearchClient.getFromResponseAsArrayOfITrack(response);
+        setSearchResults(results);
     };
 
     return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SearchBar.css';
 
 interface ISearchBar {
@@ -6,15 +6,23 @@ interface ISearchBar {
 }
 
 export default function SearchBar(props: ISearchBar) {
+    const [searchTerm, setSearchTerm] = useState<string>('');
     return (
         <div className="SearchBar">
             <input
                 placeholder="Enter A Song, Album, or Artist"
                 onChange={(e) => {
-                    props.onSearch(e.target.value);
+                    setSearchTerm(e.target.value);
                 }}
             />
-            <button className="SearchButton">SEARCH</button>
+            <button
+                className="SearchButton"
+                onClick={() => {
+                    props.onSearch(searchTerm);
+                }}
+            >
+                SEARCH
+            </button>
         </div>
     );
 }
