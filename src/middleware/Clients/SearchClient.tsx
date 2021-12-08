@@ -23,6 +23,14 @@ export default class SearchClient {
         }
     };
 
+    private static getArtists(artists: Array<object>): Array<string> {
+        let artistsArray: Array<string> = [];
+        artists.forEach((artist: object) => {
+            artistsArray.push(Object.entries(artist).filter((entry) => entry[0] === 'name')[0][1] as string);
+        });
+        return artistsArray;
+    }
+
     static getFromResponseAsArrayOfITrack = (responseData: object): Array<ITrack> => {
         let tracksArray: Array<ITrack> = [];
         if (Object.keys(responseData).includes('tracks')) {
@@ -37,12 +45,7 @@ export default class SearchClient {
                     const artists = Object.entries(item).filter(
                         (entry) => entry[0] === 'artists'
                     )[0][1] as Array<object>;
-                    let artistsArray: Array<string> = [];
-                    artists.forEach((artist: object) => {
-                        artistsArray.push(
-                            Object.entries(artist).filter((entry) => entry[0] === 'name')[0][1] as string
-                        );
-                    });
+                    let artistsArray: Array<string> = this.getArtists(artists);
                     const albumObject = Object.entries(item).filter((entry) => entry[0] === 'album')[0][1] as object;
                     let albumName: string = Object.entries(albumObject).filter(
                         (entry) => entry[0] === 'name'
