@@ -19,7 +19,7 @@ describe('AuthClient Component', () => {
         expect(SearchClient.getFromResponseAsArrayOfITrack(response)[0]).toEqual({
             album: "Love Yourself 結 'Answer'",
             artists: ['BTS'],
-            id: '2AIWoHr9DF6y4KALCBKWQS',
+            id: '1e8J3XClxZbFmvIHLI8CE4',
             name: 'IDOL',
         });
     });

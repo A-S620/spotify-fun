@@ -12,8 +12,7 @@ export default class PlaylistClient {
             });
             return response.data;
         } catch (error) {
-            // @ts-ignore
-            const { response } = error;
+            const { response }: any = error;
             if (response) {
                 const errorResponseData = response.data.error as { status: number; message: string };
                 return new Error(`${errorResponseData.status}: ${errorResponseData.message}`);

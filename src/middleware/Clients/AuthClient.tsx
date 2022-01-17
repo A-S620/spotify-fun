@@ -24,8 +24,7 @@ export default class AuthClient {
             AuthClient.accessToken = response.data.access_token;
             AuthClient.expiresIn = response.data.expiresIn;
         } catch (error) {
-            // @ts-ignore
-            const { response } = error;
+            const { response }: any = error;
             if (response) {
                 const errorResponseData = response.data as { error: string; error_description: string };
                 return new Error(`${errorResponseData.error}: ${errorResponseData.error_description}`);

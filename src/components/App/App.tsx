@@ -12,20 +12,11 @@ require('dotenv').config();
 
 export default function App() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [searchResults, setSearchResults] = useState<ITrack[]>([
-        { name: 'Blue Side (Outro)', artists: ['j-hope'], album: 'Hope World', id: '1Blue' },
-    ]);
+    const [searchResults, setSearchResults] = useState<ITrack[]>([]);
     const [accessToken, setAccessToken] = useState<string>('');
     const [tokenIsFetched, setTokenIsFetched] = useState<boolean>(false);
     const [playlistName, setPlaylistName] = useState<string>('Just for fun');
-    const [playlistTracks, setPlaylistTracks] = useState<ITrack[]>([
-        {
-            name: 'My Universe',
-            artists: ['Coldplay'],
-            album: 'My Universe',
-            id: '1MyUni',
-        },
-    ]);
+    const [playlistTracks, setPlaylistTracks] = useState<ITrack[]>([]);
     useEffect(() => {
         if (!tokenIsFetched) {
             fetchAccessToken();

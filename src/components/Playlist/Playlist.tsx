@@ -16,17 +16,11 @@ interface IPlaylist {
 export default function Playlist(props: IPlaylist) {
     return (
         <div className="Playlist">
-            <input
-                name={'Playlist Name'}
-                defaultValue={'New Playlist'}
-                onChange={(e) => {
-                    props.onNameChange(e.target.value);
-                }}
-            />
+            <h2>Songs to Analyse</h2>
             <TrackList trackList={props.playlistTracks} onRemove={(track) => props.onRemove(track)} isRemoval={true} />
             <button className="Playlist-save" onClick={() => props.onSave(props.playlistTracks)}>
                 {' '}
-                SAVE TO SPOTIFY
+                ANALYSE SONGS
             </button>
         </div>
     );
