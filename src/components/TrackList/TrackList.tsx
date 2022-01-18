@@ -14,7 +14,7 @@ interface ITrackList {
 
 export default function TrackList(props: ITrackList) {
     return (
-        <div className="TrackList">
+        <div className="TrackList" id={'trackList'}>
             {props.trackList.map((track) => {
                 return (
                     <Track

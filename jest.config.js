@@ -26,7 +26,7 @@ module.exports = {
             diagnostics: false,
         },
     },
-    collectCoverageFrom: ['**/*.{js,jsx}', '!**/node_modules/**', '!**/vendor/**'],
+    collectCoverageFrom: ['**/*.{js,jsx,ts,tsx}', '!**/node_modules/**', '!**/vendor/**'],
     clearMocks: true,
     collectCoverage: true,
     coverageDirectory: 'coverage',
@@ -37,10 +37,10 @@ module.exports = {
     notify: true,
     resetMocks: true,
     resetModules: true,
-    testEnvironment: 'node',
+    testEnvironment: 'jsdom',
     watchman: true,
     moduleNameMapper: {
-        '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+        '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|css)$':
             '<rootDir>/test/fileMock.ts',
         '^@/(.*)$': '<rootDir>/src/$1',
     },
