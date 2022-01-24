@@ -41,6 +41,7 @@ export default function Track(props: ITrackComponent) {
             </div>
             <button
                 className="Track-action"
+                id={'track-action-button'}
                 onClick={(e) => {
                     if (props.isRemoval) {
                         onRemove({
