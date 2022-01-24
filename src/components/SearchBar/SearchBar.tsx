@@ -8,7 +8,7 @@ interface ISearchBar {
 export default function SearchBar(props: ISearchBar) {
     const [searchTerm, setSearchTerm] = useState<string>('');
     return (
-        <div className="SearchBar">
+        <div className="SearchBar" id={'search-bar'}>
             <input
                 placeholder="Enter A Song, Album, or Artist"
                 onChange={(e) => {

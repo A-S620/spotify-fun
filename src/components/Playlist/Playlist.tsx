@@ -16,13 +16,9 @@ interface IPlaylist {
 
 export default function Playlist(props: IPlaylist) {
     return (
-        <div className="Playlist">
+        <div className="Playlist" id={'songs-to-analyse'}>
             <h2>Songs to Analyse</h2>
             <TrackList trackList={props.playlistTracks} onRemove={(track) => props.onRemove(track)} isRemoval={true} />
-            {/*<button className="Playlist-save" onClick={() => props.onSave(props.playlistTracks)}>*/}
-            {/*    {' '}*/}
-            {/*    ANALYSE SONGS*/}
-            {/*</button>*/}
             <AnalysisDialog />
         </div>
     );

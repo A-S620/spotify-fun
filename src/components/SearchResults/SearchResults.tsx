@@ -11,8 +11,8 @@ interface ISearchResults {
 
 export default function SearchResults(props: ISearchResults) {
     return (
-        <div className="SearchResults">
-            <h2>Results</h2>
+        <div className="SearchResults" id={'search-results'}>
+            <h2>Search Results</h2>
             <TrackList
                 isRemoval={false}
                 trackList={props.searchResults}
